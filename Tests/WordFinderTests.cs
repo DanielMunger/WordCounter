@@ -102,21 +102,51 @@ namespace WordCounterTests
         //Assert
         Assert.Equal(true, _instances == _expected);
       }
-
-      // [Fact]
-      // public void WordCounter_DifferentCharactersMultiple_Two()
-      // {
-      //   //Arrange
-      //   //Action
-      //   //Assert
-      // }
-      // [Fact]
-      // public void WordCounter_CaseInsensitive_Two()
-      // {
-      //   //Arrange
-      //   //Assert
-      //   //Action
-      // }
-
+      [Fact]
+      public void WordCounter_DifferentCharactersMultiple_Two()
+      {
+        //Arrange
+        string _userWord = "the";
+        string _userSentece = "the cat in the hat";
+        string[] _userSentenceArray;
+        int _instances = 0;
+        int _expected = 2;
+        //Action
+        _userSentenceArray = _userSentece.Split(' ');
+        for(int i = 0; i <= _userSentenceArray.Length -1; i++)
+        {
+          if(_userWord == _userSentenceArray[i])
+          {
+            _instances += 1;
+          }
+        }
+        //Assert
+        Assert.Equal(true, _instances == _expected);
+      }
+      [Fact]
+      public void WordCounter_CaseInsensitive_Two()
+      {
+        //Arrange
+        string _userWord = "tHe";
+        string _userSentece = "thE Cat in The hat";
+        string[] _userSentenceArray;
+        int _instances = 0;
+        int _expected = 2;
+        //Action
+        _userWord = _userWord.ToLower();
+        Console.WriteLine(_userWord);
+        _userSentece = _userSentece.ToLower();
+        Console.WriteLine(_userSentece);
+        _userSentenceArray = _userSentece.Split(' ');
+        for(int i = 0; i <= _userSentenceArray.Length -1; i++)
+        {
+          if(_userWord == _userSentenceArray[i])
+          {
+            _instances += 1;
+          }
+        }
+        //Assert
+        Assert.Equal(true, _instances == _expected);
+      }
   }
 }
