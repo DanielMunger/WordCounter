@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
-using WordCounter.Objects;
+using Repeat.Objects;
 using Nancy;
 
-namespace WordCounter
+namespace RepeatCounterNancy
 {
   public class HomeModule : NancyModule
   {
     public HomeModule()
     {
       Get["/"] = _ => View["index.cshtml"];
-      Get[""] = _ => {
-        //Action Here
-        return View["place.cshtml", Model];
+      Post["/result"] = _ => {
+        string UserWord = Request.Form["user-word"];
+        string UserSentence = Request.Form["user-sentence"];
+        RepeatCounter newCounter = new RepeatCounter(UserWord, UserSentence);
+        int result = newCounter.RepeatCounts();
+        return View["result.cshtml", result];
       };
     }
   }

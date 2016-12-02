@@ -1,22 +1,21 @@
 using System;
 using System.Collections.Generic;
-//using WordCounter.Objects;
 using Xunit;
 
-namespace WordCounterTests
+namespace RepeatCounterTests
 {
-  public class WordCounterTests
+  public class RepeatCounterTests
   {
       [Fact]
       public void WordCounter_MatchingSingleLetter_One()
       {
         //Arrange
         string _userWord = "a";
-        string _userSentece = "a";
+        string _userSentence = "a";
         int _instances = 0;
         int _expected = 1;
         //Action
-        if(_userWord == _userSentece)
+        if(_userWord == _userSentence)
         {
           _instances += 1;
         }
@@ -28,11 +27,11 @@ namespace WordCounterTests
       {
         //Arrange
         string _userWord = "ccc";
-        string _userSentece = "ccc";
+        string _userSentence = "ccc";
         int _instances = 0;
         int _expected = 1;
         //Action
-        if(_userWord == _userSentece)
+        if(_userWord == _userSentence)
         {
           _instances += 1;
         }
@@ -44,12 +43,12 @@ namespace WordCounterTests
       {
         //Arrange
         string _userWord = "the";
-        string _userSentece = "the cat in the hat";
+        string _userSentence = "the cat in the hat";
         string[] _userSentenceArray;
         int _instances = 0;
         int _expected = 2;
         //Action
-        _userSentenceArray = _userSentece.Split(' ');
+        _userSentenceArray = _userSentence.Split(' ');
         for(int i = 0; i <= _userSentenceArray.Length -1; i++)
         {
           if(_userWord == _userSentenceArray[i])
@@ -65,12 +64,12 @@ namespace WordCounterTests
       {
         //Arrange
         string _userWord = "the";
-        string _userSentece = "the";
+        string _userSentence = "the";
         string[] _userSentenceArray;
         int _instances = 0;
         int _expected = 1;
         //Action
-        _userSentenceArray = _userSentece.Split(' ');
+        _userSentenceArray = _userSentence.Split(' ');
         for(int i = 0; i <= _userSentenceArray.Length -1; i++)
         {
           if(_userWord == _userSentenceArray[i])
@@ -86,12 +85,12 @@ namespace WordCounterTests
       {
         //Arrange
         string _userWord = "the";
-        string _userSentece = "a cat in the hat";
+        string _userSentence = "a cat in the hat";
         string[] _userSentenceArray;
         int _instances = 0;
         int _expected = 1;
         //Action
-        _userSentenceArray = _userSentece.Split(' ');
+        _userSentenceArray = _userSentence.Split(' ');
         for(int i = 0; i <= _userSentenceArray.Length -1; i++)
         {
           if(_userWord == _userSentenceArray[i])
@@ -107,12 +106,12 @@ namespace WordCounterTests
       {
         //Arrange
         string _userWord = "the";
-        string _userSentece = "the cat in the hat";
+        string _userSentence = "the cat in the hat";
         string[] _userSentenceArray;
         int _instances = 0;
         int _expected = 2;
         //Action
-        _userSentenceArray = _userSentece.Split(' ');
+        _userSentenceArray = _userSentence.Split(' ');
         for(int i = 0; i <= _userSentenceArray.Length -1; i++)
         {
           if(_userWord == _userSentenceArray[i])
@@ -128,16 +127,41 @@ namespace WordCounterTests
       {
         //Arrange
         string _userWord = "tHe";
-        string _userSentece = "thE Cat in The hat";
+        string _userSentence = "thE Cat in The hat";
         string[] _userSentenceArray;
         int _instances = 0;
         int _expected = 2;
         //Action
         _userWord = _userWord.ToLower();
         Console.WriteLine(_userWord);
-        _userSentece = _userSentece.ToLower();
-        Console.WriteLine(_userSentece);
-        _userSentenceArray = _userSentece.Split(' ');
+        _userSentence = _userSentence.ToLower();
+        Console.WriteLine(_userSentence);
+        _userSentenceArray = _userSentence.Split(' ');
+        for(int i = 0; i <= _userSentenceArray.Length -1; i++)
+        {
+          if(_userWord == _userSentenceArray[i])
+          {
+            _instances += 1;
+          }
+        }
+        //Assert
+        Assert.Equal(true, _instances == _expected);
+      }
+      [Fact]
+      public void WordCounter_IgnoreSymbols_Two()
+      {
+        //Arrange
+        string _userWord = "hat";
+        string _userSentence = "thE Cat! in The, hat.";
+        string[] _userSentenceArray;
+        int _instances = 0;
+        int _expected = 1;
+        //Action
+        _userWord = _userWord.ToLower();
+        Console.WriteLine(_userWord);
+        _userSentence = _userSentence.ToLower();
+        Console.WriteLine(_userSentence);
+        _userSentenceArray = _userSentence.Split(' ' , '.' , ',' , '!' , '?');
         for(int i = 0; i <= _userSentenceArray.Length -1; i++)
         {
           if(_userWord == _userSentenceArray[i])
