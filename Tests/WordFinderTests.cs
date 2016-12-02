@@ -60,13 +60,27 @@ namespace WordCounterTests
         //Assert
         Assert.Equal(true, _instances == _expected);
       }
-      // [Fact]
-      // public void WordCounter_DifferentCharacters_One()
-      // {
-      //   //Arrange
-      //   //Action
-      //   //Assert
-      // }
+      [Fact]
+      public void WordCounter_DifferentCharacters_One()
+      {
+        //Arrange
+        string _userWord = "the";
+        string _userSentece = "the";
+        string[] _userSentenceArray;
+        int _instances = 0;
+        int _expected = 1;
+        //Action
+        _userSentenceArray = _userSentece.Split(' ');
+        for(int i = 0; i <= _userSentenceArray.Length -1; i++)
+        {
+          if(_userWord == _userSentenceArray[i])
+          {
+            _instances += 1;
+          }
+        }
+        //Assert
+        Assert.Equal(true, _instances == _expected);
+      }
       // [Fact]
       // public void WordCounter_DifferentCharactersAnywhere_One()
       // {
